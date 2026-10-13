@@ -1,0 +1,509 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{graphicx} 
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{setspace}
+\setstretch{1.2}
+\author{}
+\date{}
+\usepackage{fancyhdr}
+\setlength{\headheight}{13.5pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{-\thepage-}
+\fancyhead[R]{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{1pt}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=red,urlcolor=green]{hyperref}
+\usepackage[style=phys,backend=biber,biblabel=brackets]{biblatex}
+\addbibresource{ref.bib}
+\usepackage{bookmark}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\begin{document}
+
+\begin{center}
+\begin{huge}
+        \textbf{Synchrotron Radiation}
+\end{huge} \\ \vspace{0.3cm}
+\begin{small}
+    - Rubya Akter Badhon    
+\end{small}
+\end{center}
+
+\section*{Summary} EM radiation emitted by the charged particles when accelerated by force to move into a curved path at relativistic speed. 
+So the e/m experiment that we have done in our lab, that does not count because the speed was not relativistic. But there was a glowing path. 
+The light was from the gas, not from the accelerated electons. Synchrotron radiation is the dominent loss of energy in LEP collision experiment.
+%--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+\section*{Setup}
+The goal is to find the radiate power from an accelerated charge. 
+This can be obtained from the poynting vector, which is the flow of energy per unit area per unit time or power per unit time. 
+The poynting vector is,
+\begin{align*}
+    \mathbf{S} = \frac{1}{\mu_0}(\mathbf{E} \times \mathbf{B})
+\end{align*}
+And from this the power over the whole area becomes,
+\begin{align*}
+    P = \oint \mathbf{S} \cdot d\mathbf{a}
+\end{align*}
+$\mathbf{E}$ and $\mathbf{B}$ at time $t$ can be written as,
+\begin{align*}
+    & \mathbf{E} = -\nabla \phi - \frac{\partial \mathbf{A}}{\partial t} \\
+    & \mathbf{B} = \nabla \times \mathbf{A}
+\end{align*}
+Here the fields are produced by a single accelerated elctron and these fields are called Li\`enard-Wiechert fields. 
+Now I have to find $\phi$ and $\mathbf{A}$, which can be obtained from the waves equations that are,
+\begin{align*}
+    \Box^2 \phi &= -\frac{\rho}{\epsilon_0} \\
+    \Box^2 \mathbf{A} &= -\mu_0 \mathbf{J}
+\end{align*}
+Here $\rho$ is the charge density and $\mathbf{J}$ is the current density. 
+For the source terms of these equations, i have to use retarded time $t_{ret}$ to find the fields that they will create later at time $t$. 
+\footnote{I will use bold letters for vectors.}
+\newpage
+%----------------------------------------------------------------------------------------------------------------------------------
+
+\section*{Retarded Potentials and Retarded Time}
+Here for synchroton radiation we have to deal with the retarded potential and retarded time. 
+Cause, the radiation of present time that needs to be calculated is actually the result of the acceleration of electrons at retarded time. \\
+Wave equations,
+\begin{align}
+    \Box^2 \phi &= -\frac{\rho}{\epsilon_0} \label{eq1} \\
+    \Box^2 \mathbf{A} &= -\mu_0 \mathbf{J} \label{eq2}
+\end{align}
+Here $\Box^2 = (\nabla^2 - \frac{1}{c^2}\partial_t^2)$ is the d'alembertian and if $G(\mathbf{r},t;\mathbf{r'},t')$ is the green's function then,
+\begin{align}
+    &\Box^2 G(\mathbf{r},t;\mathbf{r'},t') = -\delta^3(\mathbf{r}-\mathbf{r'})\delta(t-t')\notag \\
+    \implies & (\nabla^2 - \frac{1}{c^2}\partial_t^2)G(\mathbf{r},t;\mathbf{r'},t') = -\delta^3(\mathbf{r}-\mathbf{r'})\delta(t-t')
+    \label{eq3}
+\end{align}
+As it is invariance in space time after translation, from equation (\ref{eq1}) and (\ref{eq3}),
+\begin{align}
+    \phi(r,t) = \frac{1}{\epsilon_0} \int G(\mathbf{r}-\mathbf{r'},t-t') \rho(\mathbf{r'},t')d^3r'dt' \label{eq4}
+\end{align}
+If $R\equiv (\mathbf{r}-\mathbf{r'})$ and $\tau \equiv (t-t')$ then using fourier's theorem,
+\begin{align}
+    G(\mathbf{R},\tau) = \int \frac{d\omega}{2\pi}\tilde{G}(\mathbf{R}, \omega) e^{-i\omega \tau} \label{eq5}
+\end{align}
+From equation (\ref{eq3}) and (\ref{eq5}) as translation happened as $\partial_t^2 \rightarrow -\omega^2$,
+\begin{align}
+     (\nabla^2 + \frac{\omega^2}{c^2})\tilde{G}(\mathbf{R}, \omega) = -\delta^3(\mathbf{R}) \label{eq6}
+\end{align}
+In this equation $\delta^3(\mathbf{R})$ is the source term (a point source at origin) and also everything else in equation (\ref{eq6}) is also rotationally symmetric. 
+So $\mathbf{R} = |\mathbf{R}|$ and the solution of $\tilde{G}(R, \omega)$ can be written as,
+\begin{align}
+    \tilde{G}(R, \omega) = a\frac{e^{ikR}}{R} + b\frac{e^{-ikR}}{R} \label{eq7}
+\end{align}
+Using fourier's theorem again in equation (\ref{eq7}),
+\begin{align}
+    G(R, \tau) = \frac{a}{R} \delta(\tau - \frac{R}{c}) + \frac{b}{R} \delta(\tau + \frac{R}{c}) \label{eq8}
+\end{align}
+In this equation, there are two parts. now if we consider the causality we can have solution for one part, that is the retarded part. 
+Due to causality, $G=0$ when $\tau<0$. 
+ Now if $\tau = -\frac{R}{c}$ which is $<0$,
+\begin{align}
+     & G(R, -\frac{R}{c}) = \frac{a}{R}\delta(-\frac{R}{c}-\frac{R}{c}) + \frac{b}{R}\delta (-\frac{R}{c}+\frac{R}{c}) \notag \\
+    \implies & G(R, -\frac{R}{c}) = \frac{b}{R} \tag{as $-2R/c \neq 0$ for $R>0$} \\
+    \implies & \boxed{b = 0} \label{eq9}
+\end{align}
+From equation (\ref{eq7}) as $R\rightarrow 0$ for normalization,
+\begin{align}
+    \tilde{G}(R) = \frac{a}{R} + \frac{b}{R} \label{eq10}
+\end{align}
+Again near the origin as $R\rightarrow 0$, the exponential term of equation (\ref{eq7}) becomes 1.
+\begin{align*}
+     \nabla^2\tilde{G}(R) = -\delta^3(R)
+\end{align*}
+And the poisson's equation,
+\begin{align} 
+     & \nabla^2(\frac{1}{4\pi R}) = -\delta^3(R) \notag \\
+     \implies & \tilde{G}(R) = \frac{1}{4\pi R} \notag \\
+     \implies & a + b = \frac{1}{4\pi} \tag{from equation (\ref{eq10})} \\
+     \therefore & \boxed{a = \frac{1}{4\pi}}
+\end{align}
+So the retarded Green's function can be obtain from equation (\ref{eq8}) as,
+\begin{align}
+    G_{ret}(R, \tau) = \frac{1}{4\pi R} \delta (\tau - \frac{R}{c}) \label{eq12}
+\end{align}
+and the scalar potential from equation (\ref{eq4}),
+\begin{align}
+    \phi_{ret}(r,t) = \frac{1}{4\pi \epsilon_0} \int \frac{\delta (t - t' -\frac{R}{c})}{R} \rho (r',t') d^3r'dt' \label{eq13}
+\end{align}
+From the delta function of equation (\ref{eq13}) the retarded time can be obtained as $t' = t_{ret}$.
+\begin{align}
+    \therefore \boxed{t_{ret} = t - \frac{R}{c}} \label{eq14}
+\end{align}
+Here $R = |\mathbf{r} - \mathbf{r'}|$. substituting them in equation (\ref{eq13}),
+\begin{align}
+    \therefore \boxed{\phi_{ret}(r,t) = \frac{1}{4\pi \epsilon_0} \int \frac{\rho (r',t_{ret})}{|\mathbf{r} - \mathbf{r'}|} d^3r'} \label{eq15}
+\end{align}
+This is the retarded scalar potential. Same goes for the retarded vector potential and from equation (\ref{eq2}) it can be written as,
+\begin{align}
+    \therefore \boxed{\mathbf{A}_{ret}(r,t) = \frac{\mu_0}{4\pi} \int \frac{\mathbf{J}(r',t_{ret})}{|\mathbf{r} - \mathbf{r'}|} d^3r'} \label{eq16}
+\end{align}
+\newpage
+%---------------------------------------------------------------------------------------------------------------------------------
+
+\section*{Li\`enard-Wiechert Fields}
+For a point charge $q$ moving along $r_0(t)$ whose velocity is $\dot{r_0}(t') = \mathbf{v(t')}$ the density terms are,
+\begin{align}
+    \rho(r', t') &= q\delta^3(r' - r_0(t')) \label{eq17} \\
+    \mathbf{J}(r', t') &= q\mathbf{v}(t')\delta^3(r' - r_0(t')) \label{eq18}
+\end{align}
+So if we calculate $\rho$, we can easily get $\mathbf{J}$. Substituting equation (\ref{eq17}) in equation (\ref{eq15}),
+\begin{align}
+    \phi_{ret}(r,t) &= \frac{1}{4\pi \epsilon_0} \int \frac{\delta (t - t' -\frac{|\mathbf{r} - \mathbf{r'|}}{c})}{|\mathbf{r} - \mathbf{r'}|}  q\delta^3(r' - r_0(t'))d^3r'dt' \notag
+\end{align}
+If $r' = r_0(t')$ then, 
+\begin{align}
+        \phi_{ret}(r,t) &= \frac{q}{4\pi \epsilon_0} \int \frac{\delta (t - t' -\frac{|\mathbf{r} - \mathbf{r_0}(t')|}{c})}{|\mathbf{r} - \mathbf{r_0}(t')|} dt' \notag \\
+        &=  \frac{q}{4\pi \epsilon_0} \int \frac{\delta (t - t' -\frac{|\mathbf{R}|}{c})}{|\mathbf{R}|} dt' \label{eq19}
+\end{align}
+Here, the delta function contains the term which depends on $t'$. So, the function inside $\delta$ can be written as $f(t')$ from which
+$f'(t')$ can be obtained.
+\begin{align}
+    f(t') &= t - t' - \frac{|\mathbf{r}-\mathbf{r_0}(t')|}{c} \notag \\
+    f'(t') & = -1 - \frac{1}{c} \frac{d}{dt'}|\mathbf{r} - \mathbf{r_0}(t')| \notag \\
+           & = -1 - \frac{1}{c} \frac{d}{dt'}|\mathbf{R}| \label{eq20}
+\end{align}
+and we know that,
+\begin{align}
+    \delta(f(t')) = \frac{\delta(t' - t_0)}{|f'(t_0)|} \label{eq21}
+\end{align}
+Again,
+\begin{align}
+    & |\mathbf{R}|^2 = \mathbf{R}\cdot \mathbf{R} \notag \\
+    \therefore & \frac{d}{dt'}|\mathbf{R}| = \mathbf{R}\cdot \frac{\dot{\mathbf{R}}}{|\mathbf{R}|} \label{eq22} 
+\end{align}
+Therefore,
+\begin{align}
+    f'(t') = -1 + \frac{1}{c}\mathbf{R} \cdot \frac{\mathbf{v}}{|\mathbf{R}|} = -1 + \frac{\mathbf{v}}{c}\hat{R} \label{eq23}
+\end{align}
+At retarded time,
+\begin{align}
+    |f'(t_{ret})| = 1-\frac{\mathbf{v}}{c}.\hat{R}|_{t_{ret}} \label{eq24}
+\end{align}
+So, the scalar potential becomes,
+\begin{align}
+    \phi_{ret}(r,t) &= \frac{q}{4\pi \epsilon_0} \int \frac{1}{|\mathbf{r} - \mathbf{r_0}(t')|}\cdot \frac{\delta(t'-t_{ret})}{|f'(t_{ret})|} dt' \notag \\
+    \therefore \phi_{ret}(r,t) &= \frac{1}{4\pi \epsilon_0}\cdot \frac{q}{R|f'(t_{ret})|} \label{eq25}
+\end{align}
+Here equation (\ref{eq25}) is obtained for $t' = t_{ret}$. Using similar method from equation (\ref{eq18}) the vector potential can also be obtained as,
+\begin{align}
+    \mathbf{A}_{ret}(r,t) &= \frac{\mu_0}{4\pi }\cdot \frac{q\mathbf{v}}{R|f'(t_{ret})|} \label{eq26}
+\end{align}
+Here equations (\ref{eq25}) and (\ref{eq26}) are called the Li\`enard-Wiechert potentials. 
+Now that the potentials are known, the fields can also be calculated as,
+\begin{align}                                                                                                                    
+     & \mathbf{E} = -\nabla \phi - \frac{\partial \mathbf{A}}{\partial t}\label{eq27} \\                                                       
+     & \mathbf{B} = \nabla \times \mathbf{A}\label{eq28}                                                                                       
+\end{align} 
+Another problem here is that the Li\`enard-Wiechert potentials of equation (\ref{eq25}) and (\ref{eq26}) are function of retarded time. 
+But equation (\ref{eq27}) and (\ref{eq28}) depends on t. Have to get rid of $t_{ret}$...\\
+Derivatives of $\phi$ can be written as,
+\begin{align}
+    \frac{\partial \phi}{\partial t} &= \frac{\partial \phi}{\partial t_{ret}} \cdot \frac{\partial t_{ret}}{\partial t}\label{eq29} \\
+    \nabla \phi &= \frac{\partial \phi}{\partial t_{ret}}\cdot \nabla t_{ret} + \nabla \phi|_{t_{ret}} \label{eq30}  
+\end{align}
+These equations can be used to calculated electric and magnetic field without dealing with $\mathbf{A}$ as $\mathbf{A} = \frac{\mathbf{v}}{c^2}\phi$. \\
+\begin{minipage}[c]{0.70\textwidth}
+\begin{align}
+    & t_{ret} = t-\frac{R(t_{ret})}{c} \notag \\
+    & \frac{\partial t_{ret}}{\partial t} = 1-\frac{1}{c} \frac{\partial R}{\partial t_{ret}} \cdot \frac{\partial t_{ret}}{\partial t} \notag \\
+    \implies & (1 - \frac{1}{c} \mathbf{v}\cdot \hat{R}) \frac{\partial t_{ret}}{\partial t} = 1 \notag 
+\end{align}
+\end{minipage}
+\hspace{0.5em}\vrule height 3em \hspace{0.02em} \vrule height 2em \hspace{1em}
+\begin{minipage}[c]{0.18\textwidth}
+\begin{align*}
+    \mathbf{R} &= \mathbf{r}-\mathbf{r_0}(t_{ret}) \\
+    \frac{d\mathbf{R}}{dt_{ret}} &= -\mathbf{v}\cdot \hat{R}
+\end{align*}
+\end{minipage} 
+
+\begin{align}
+    \therefore \boxed{\frac{\partial t_{ret}}{\partial t} = \frac{1}{(1 - \frac{1}{c} \mathbf{v}\cdot \hat{R})} =  \frac{1}{|f'(t_{ret})|}} \label{eq31}
+\end{align}
+Again,
+\begin{align}
+    & \nabla t_{ret} = -\frac{1}{c} \nabla R (t_{ret}) \notag \\
+    \implies & \nabla t_{ret} = -\frac{1}{c} [\nabla R +\frac{d\mathbf{R}}{dt_{ret}}\nabla t_{ret}] \notag \\
+    \implies & \nabla t_{ret} = -\frac{1}{c} [\nabla R +(-\mathbf{v}\cdot \hat{R})\nabla t_{ret}] \notag \\
+    \implies & (1 - \frac{1}{c} \mathbf{v}\cdot \hat{R}) \nabla t_{ret} = -\frac{1}{c} \hat{R} \notag 
+\end{align}
+\begin{align}
+    \therefore \boxed{\nabla t_{ret} = \frac{-\frac{1}{c} \hat{R}}{(1 - \frac{1}{c} \mathbf{v}\cdot \hat{R})} = -\frac{\hat{R}}{c|f'(t_{ret})|}} \label{32}
+\end{align}
+From equation (\ref{eq25}),
+\begin{align}
+    \frac{\partial \phi}{\partial t_{ret}} &= \frac{q}{4\pi \epsilon_0} \frac{\partial}{\partial t_{ret}}(\frac{1}{R|f'(t_{ret})|}) \notag \\
+                                           &= \frac{q}{4\pi \epsilon_0} \frac{-\frac{\partial}{\partial t_{ret}}(R|f'(t_{ret})|)}{R^2|f'(t_{ret})|^2} \notag \\
+                                           &= \frac{q}{4\pi \epsilon_0} \frac{-R\frac{\partial}{\partial t_{ret}}(|f'(t_{ret})|) - |f'(t_{ret})|\frac{\partial R}{\partial t_{ret}}}{R^2|f'(t_{ret})|^2} \notag \\
+                                           &= \frac{q}{4\pi \epsilon_0} \frac{-R(-\dot{\hat{R}}\mathbf{v}/c - \hat{R}\mathbf{a}/c) - |f'(t_{ret})|(-\mathbf{v}\cdot \hat{R})}{R^2|f'(t_{ret})|^2} \label{eq33} 
+\end{align}
+In equation (\ref{eq33}), $\dot{R} = -\hat{R}\cdot \mathbf{v}$ and the term $\dot{\hat{R}}$ can be obtained as,
+\begin{align}
+    \hat{R} &= \frac{d}{dt_{ret}}\left(\frac{\mathbf{r} - \mathbf{r_0}(t_{ret})}{R}\right) \notag \\
+            &= \frac{-\mathbf{v}-\hat{R}\dot{R}}{R} \notag \\
+            &= \frac{-\mathbf{v}-\hat{R}(\hat{R}.\mathbf{v})}{R} \label{eq34}
+\end{align}
+From equation (\ref{eq33}),
+\begin{align}
+    \frac{\partial \phi}{\partial t_{ret}} &= \frac{q}{4\pi \epsilon_0} \frac{[-\mathbf{v} + \hat{R}(\hat{R}\cdot \mathbf{v})]\mathbf{v}/c - R\hat{R}\cdot \mathbf{a}/c - |f'(t_{ret})|(-\mathbf{v}\cdot \hat{R})}{R^2|f'(t_{ret})|^2} \notag \\
+                                           &= \frac{q}{4\pi \epsilon_0} \frac{-v^2/c + (\hat{R}\cdot \mathbf{v})^2/c - R\hat{R}\cdot \mathbf{a}/c - (1-\mathbf{v}.\hat{R}/c)(-\mathbf{v}\cdot \hat{R})}{R^2|f'(t_{ret})|^2} \notag \\
+                                           &= \frac{q}{4\pi \epsilon_0} \frac{-v^2/c + R\hat{R}\cdot \mathbf{a}/c + \mathbf{v}\cdot \hat{R}}{R^2|f'(t_{ret})|^2} \label{eq35}
+\end{align}
+Again,
+\begin{align}
+    \nabla \phi|_{t_{ret}} &= \frac{q}{4\pi \epsilon_0} \nabla \left( \frac{1}{R|f'(t_{ret})|} \right) \notag \\
+                         &= -\frac{q}{4\pi \epsilon_0} \frac{\nabla (R|f'(t_{ret})|)}{R^2|f'(t_{ret})|^2} \notag \\
+                         &= -\frac{q}{4\pi \epsilon_0} \frac{\nabla (R - \frac{\mathbf{R}\cdot \mathbf{v}}{c})}{R^2|f'(t_{ret})|^2} \notag \\
+                         &= -\frac{q}{4\pi \epsilon_0} \frac{\hat{R} - \frac{\mathbf{v}}{c}}{R^2|f'(t_{ret})|^2} \label{eq36}
+\end{align}
+From $\phi$ the vector potential term is,
+\begin{align}
+\frac{\partial \mathbf{A}}{\partial t} = \frac{1}{c^2}\left[\frac{\mathbf{a}}{|f'(t_{ret})|}\phi + \frac{\mathbf{v}}{|f'(t_{ret})|}\frac{\partial \phi}{\partial t_{ret}}\right ] \label{eq37}
+\end{align}
+Let, $\mathbf{u} = c\hat{R} - \mathbf{v}$ as denoted in the book \cite{book}
+\footnote{ Now I have to take all the pieces and work out the fields. 
+But first I need to simplify things as the terms are making me hazy. 
+I have chosen the notation for me, so that I can recognize them at a glance.... }
+and,
+\begin{align*}
+    & K = \frac{q}{4\pi \epsilon_0} \\
+    & X = -v^2/c + R\hat{R}\cdot \mathbf{a}/c + \mathbf{v}\cdot \hat{R} \\
+    & Y = |f'(t_{ret})|
+\end{align*}
+Then using the above equations, the simplified electric field can be written as,
+\begin{align}
+    \mathbf{E} &= \frac{KX\hat{R}}{R^2cY^3} + K\frac{\mathbf{u}}{cR^2Y^2} - \frac{1}{c^2}\left[\frac{\mathbf{a}K}{RY^2} + \frac{\mathbf{v}KX}{R^2Y^3}\right] \notag \\
+               &= \frac{K}{cRY^3}\left[\frac{X\hat{R}}{R} + \frac{\mathbf{u}Y}{R} - \frac{\mathbf{a}Y}{c} - \frac{\mathbf{v}X}{cR}\right] \notag \\
+               &= \frac{K}{c^2R^2Y^3}\left[ X\hat{R}c + \mathbf{u}Yc -\mathbf{a}RY - \mathbf{v}X \right] \notag \\
+               &= \frac{K}{c^2R^2Y^3} \left[ X(\hat{R}c - \mathbf{v}) + Y \mathbf{u}c - \mathbf{a}RY \right] \notag \\
+               &= \frac{K}{c^2R^2Y^3} \left[ X\mathbf{u} + Y\mathbf{u}c - \mathbf{a}RY \right] \notag \\
+               &= \frac{K}{c^2R^2Y^3} \left[ (X + Yc)\mathbf{u} - \mathbf{a}RY \right] \label{eq38}
+\end{align}
+Here,
+\begin{align*}
+    X+Yc &= -\frac{v^2}{c} + \frac{R\hat{R}\cdot \mathbf{a}}{c} + \mathbf{v}\cdot \hat{R} + c - \mahtbf{v} \cdot \hat{R} \notag \\
+         &= \frac{c^2-v^2}{c} + \frac{R}{c}\hat{R}\cdot \mathbf{a}
+\end{align*}
+Therefore,
+\begin{align}
+    \therefore \mathbf{E} &= \frac{K}{c^2R^2Y^3} \left[ (\frac{c^2 - v^2}{c} + \frac{R}{c}\hat{R}\cdot \mathbf{a} - \frac{\hat{R}\cdot \mathbf{u}}{c}) \mathbf{u} - \mathbf{a}R \frac{\hat{R}\cdot \mathbf{u}}{c} \right] \notag \\
+                          &= \frac{K}{c^3R^2Y^3}\left[ (c^2-v^2)\mathbf{u} + R\left( (\hat{R}\cdot \mathbf{a})\mathbf{u} - (\hat{R}\cdot \mathbf{u})\mathbf{a} \right) \right] \notag \\
+                          &= \frac{K}{c^3R^2Y^3}\left[ (c^2-v^2)\mathbf{u} + R \hat{R} \times (\mathbf{u}\times \mathbf{a})\right] \label{eq39}
+\end{align}
+In equation (\ref{eq39}). the radiated field term is the term that contains the acceleration $\mathbf{a}$. So,
+\begin{align}
+\therefore \boxed{\mathbf{E_{rad}} = \frac{K}{c^3RY^3} \hat{R}\times (\mathbf{u} \times \mathbf{a})} \label{eq40} 
+\end{align}
+\newpage
+Here,
+
+\begin{minipage}[c]{0.70\textwidth}                                                                                               
+\begin{align}
+    \mathbf{B} &= \nabla \times \mathbf{A} \notag \\
+               &= \frac{1}{c^2} \nabla \times (\phi \mathbf{v}) \notag \\
+               &= \frac{1}{c^2} \left[\nabla \phi \times \mathbf{v} + \phi (\nabla \times \mathbf{v}) \right] \label{eq41}
+\end{align}                                                                                                                       
+\end{minipage}                                                                                                                    
+\hspace{0.5em}\vrule height 3em \hspace{0.02em} \vrule height 2em \hspace{1em}                                                    
+\begin{minipage}[c]{0.18\textwidth}                                                                                               
+\begin{align*}                                                                                                                    
+    \mathbf{A} &= \phi \frac{\mathbf{v}}{c^2} \\
+    \phi &= \frac{K}{RY}
+\end{align*}                                                                                                                      
+\end{minipage} 
+\\
+
+Terms in equation (\ref{eq41}) can be expressed as,
+\begin{align}
+     \nabla \phi &= -\frac{KX\hat{R}}{R^2cY^3} - \frac{K\mathbf{u}}{cR^2Y^2} \\ \notag \\
+     (\nabla \times \mathbf{v})_i &= \epsilon_{ijk} \partial_j \times \mathbf{v}_k  \notag \\
+                                  &= \epsilon_{ijk} (\partial_j t_{ret}) \times \mathbf{a}_k  \notag \\
+                                  &= \nabla t_{ret} \times \mathbf{a} \tag{$\nabla t_{ret} = -\frac{\hat{R}}{cY}$} \\
+                                  &= -\frac{\hat{R}\times \mathbf{a}}{cY} \\ \notag \\
+     \nabla \phi \times \mathbf{v} &= \left(-\frac{KX\hat{R}}{R^2cY^3} - \frac{K\mathbf{u}}{cR^2Y^2}\right) \times \mathbf{v} \notag \\
+                                   &= -\frac{K}{R^2cY^3} \left[ X\hat{R} + Y\mathbf{u}\right] \times \mathbf{v} \notag \\
+                                   &= -\frac{K}{R^2cY^3} \left[ X\hat{R} \times \mathbf{v} + Y\mathbf{u} \times \mathbf{v} \right] \notag \\
+                                   &= -\frac{K}{R^2cY^3} \left[ X\hat{R} \times \mathbf{v} + Yc\hat{R} \times \mathbf{v} - \mathbf{v} \times \mathbf{v} \right] \tag{substituting $\mathbf{u}$} \\
+                                   &= -\frac{K}{R^2cY^3} (X + cY) \hat{R} \times \mathbf{v} 
+\end{align}
+Now that all conponents are acquired, $\mathbf{B}$ can be calculated using equation (\ref{eq41}).
+\begin{align}
+    \mathbf{B} &= \frac{1}{c^2} \left[\frac{K}{R^2cY^3} (X + cY) \hat{R} \times \mathbf{v} + \frac{K}{RY}\left( -\frac{\hat{R} \times \mathbf{a}}{cY} \right) \right] \label{eq45}  
+\end{align}
+From equation (\ref{eq45}) taking the acceleration term apart,
+\begin{align}
+    \mathbf{B'}_{rad} &= \frac{1}{c^2}\left[\frac{K}{R^2cY^3} X \hat{R} \times \mathbf{v} + \frac{K}{RY}\left( -\frac{\hat{R} \times \mathbf{a}}{cY} \right) \right] \notag \\
+                      &= -\left[\frac{K}{R^2c^3Y^3} (-\frac{v^2}{c} + \frac{R}{c}\hat{R}\cdot \mathbf{a} + \mathbf{v}\cdot \hat{R}) \hat{R} \times \mathbf{v} + \frac{K}{c^3RY^2} \hat{R} \times \mathbf{a} \right] \label{eq46}
+\end{align}
+\footnote{ At first I was using only the term with $\mathbf{a}$ of equation (\ref{eq45}) and did wrong calculation. 
+But $X$ also contains acceleration. Need to be cautious there.}
+Again, in equation (\ref{eq46}) there are terms without acceleration, but only accelerated terms are responsible for radiation. 
+Omitting them the actual $\mathbf{B}_{rad}$ can be obtained as,
+\newpage
+\begin{align}
+\mathbf{B}_{rad} &= -\frac{K}{Rc^4Y^3} \hat{R} \cdot \mathbf{a}(\hat{R}\times \mathbf{v}) - \hat{R} \times \mathbf{v} + \frac{K}{c^3RY^2} \hat{R} \times \mathbf{a} \right] \notag \\
+                 &= -\frac{K}{Rc^4Y^3} [\hat{R} \cdot \mathbf{a}(\hat{R}\times \mathbf{v}) + cY(\hat{R} \times \mathbf{a})] \notag \\
+                 &= \frac{K}{Rc^4Y^3} [\hat{R} \cdot \mathbf{a}(\hat{R}\times \mathbf{u}) + cY(\hat{R} \times \mathbf{a})] \tag{$\mathbf{u} = c\hat{R}-\mathbf{v} \Rightarrow \hat{R} \times \mathbf{u} = -\hat{R} \times \mathbf{v} $} \\
+                 &= \frac{K}{Rc^4Y^3} [\hat{R} \cdot \mathbf{a}(\hat{R}\times \mathbf{u}) - (c - \hat{R}\cdot \mathbf{v})(\hat{R} \times \mathbf{a})] \notag \\
+                 &= \frac{K}{Rc^4Y^3} [\hat{R} \cdot \mathbf{a}(\hat{R}\times \mathbf{u}) - \hat{R} \cdot \mathbf{u}(\hat{R}\times \mathbf{a})] \notag \\
+                 &= \frac{1}{c} \hat{R} \times \frac{K}{Rc^3Y^3}\left[\mathbf{u}(\hat{R} \cdot \mathbf{a}) - \mathbf{a}(\hat{R} \cdot \mathbf{u}) \right] \notag \\
+                 &= \frac{1}{c} \hat{R} \times \frac{K}{Rc^3Y^3} \hat{R} \times (\mathbf{u} \times \mathbf{a}) \notag \\
+\therefore &\boxed{\mathbf{B}_{rad} = \frac{1}{c} \hat{R} \times \mathbf{E}_{rad}} \label{eq47}
+\end{align}
+Equation (\ref{eq40}) and (\ref{eq47}) are acceleration parts of the Li\`enard-Wiechert fields.
+%-----------------------------------------------------------------------------------------------------------------------------------
+
+\section*{Power}
+Using the Li\`enard-Wiechert fields poynting vector for radiation can be calculated,
+\begin{align}
+    \mathbf{S}_{rad} &= \frac{1}{\mu_0} \mathbf{E}_{rad} \times \mathbf{B}_{rad} \notag \\
+                     &= \frac{1}{\mu_0} \mathbf{E}_{rad} \times \frac{1}{c} \hat{R} \times \mathbf{E}_{rad} \notag \\
+                     &= \frac{1}{\mu_0 c}[ |\mathbf{E}_{rad}|^2 \hat{R} - \mathbf{E}_{rad} (\hat{R} \cdot \mathbf{E}_{rad})] \tag{$\hat{R} \cdot \mathbf{E}_{rad} = 0$} \\
+                     &= \frac{1}{\mu_0 c} |\mathbf{E}_{rad}|^2 \hat{R} \label{eq48}
+\end{align}
+
+\footnote{From this point on relativistic notations will be used...}
+let $\beta = \frac{\mathbf{v}}{c}$ and Lorentz factor $\gamma = \frac{1}{\sqrt{1-\frac{v^2}{c^2}}}$.
+Then $\mathbf{u} = c(\hat{R} - \beta)$, $\mathbf{a} = c\dot{\beta}$ and $Y=1-\hat{R}.\beta$
+\begin{align}
+    \therefore \mathbf{E}_{rad} &= \frac{K}{Rc^3Y^3} \hat{R} \times [c(\hat{R}-\beta) \times c\dot{\beta}] \notag \\
+                                &= \frac{K}{RcY^3} \hat{R} \times [(\hat{R}-\beta) \times \dot{\beta}] \label{eq49}
+\end{align}
+Now power per solid angle per unit time $t$,
+\begin{align}
+    \therefore \frac{dP}{d\Omega}\biggl|_t &= R^2 \mathbf{S}\cdot \hat{R} \notag \\
+                                           &= \frac{R^2}{\mu_0 c}\left( \frac{q}{4\pi \epsilon_0cRY^3} \right)^2[\hat{R} \times (\hat{R}-\beta)\times \dot{\beta}]^2 \hat{R}\cdot \hat{R} \notag \\
+                                           &= \frac{q^2}{16\pi^2\mu_0 \epsilon_0^2c^3Y^6}[\hat{R}\times \{ (\hat{R} - \beta) \times \dot{\beta} \}]^2 \tag{$c = 1/\sqrt{\mu_0 \epsilon_0}$} \\
+                                           &= \frac{q^2}{16\pi^2 \epsilon_0cY^6}[\hat{R}\times \{ (\hat{R} - \beta) \times \dot{\beta} \}]^2 \label{eq50}
+\end{align}
+\\
+The energy that the charge loses is for per unit retarded time. Here,
+
+\begin{minipage}[c]{0.60\textwidth}                                                                                               
+ \begin{align}
+     & t - t_{ret} = \frac{R}{c} \notag \\
+     & \frac{dt}{dt_{ret}} -1 = \frac{\dot{R}}{c} \notag \\
+     & \frac{dt}{dt_{ret}} = 1 - \hat{R}\cdot \frac{\mathbf{v}}{c} = Y \notag \\
+     & dt = Ydt_{ret}
+ \end{align}                                                                                                                       
+\end{minipage}                                                                                                                    
+\hspace{0.5em}\vrule height 3em \hspace{0.02em} \vrule height 2em \hspace{1em}                                                    
+\begin{minipage}[c]{0.1\textwidth}                                                                                               
+ \begin{align*}
+     \dot{R} &= - \hat{R}\cdot \frac{\mathbf{v}}{c} \\
+     Y &= 1 - \hat{R}\cdot \frac{\mathbf{v}}{c} \\
+       &= 1 - \hat{R}\cdot \beta
+ \end{align*}                                                                                                                      
+\end{minipage}                                                                                                                    
+\\
+Then,
+\begin{align}
+    \therefore \frac{dP}{d\Omega}\biggl|_{t_{ret}} &= \frac{q^2}{16\pi^2 \epsilon_0cY^5}[\hat{R}\times \{ (\hat{R} - \beta) \times \dot{\beta} \}]^2 \label{eq52}
+\end{align}
+The equation contains a triple product which needs to be expended,
+\begin{align}
+    [\hat{R}\times \{ (\hat{R} - \beta) \times \dot{\beta} \}]^2 &= [(\hat{R} - \beta)(\hat{R} \cdot \dot{\beta}) - \dot{\beta}\{\hat{R}\cdot (\hat{R} - \beta)\}]^2 \notag \\
+                                                                 &= [(\hat{R} - \beta)(\hat{R} \cdot \dot{\beta}) - Y\dot{\beta}]^2 \tag{$\because \hat{R}\cdot (\hat{R} - \beta) = Y$} \\
+                                                                 &= (\hat{R} - \beta)^2(\hat{R} \cdot \dot{\beta})^2 + Y^2\dot{\beta}^2 - 2(\hat{R} - \beta)(\hat{R} \cdot \dot{\beta})Y\dot{\beta}  \notag \\
+                                                                 &= (1 - 2\hat{R}\cdot \beta +\beta^2)(\hat{R} \cdot \dot{\beta})^2 + Y^2\dot{\beta}^2 - 2\hat{R}(\hat{R} \cdot \dot{\beta})Y\dot{\beta} + 2\beta (\hat{R} \cdot \dot{\beta})Y\dot{\beta} \notag \\
+                                                                 &= (1 - 2(1-Y) +\beta^2)(\hat{R} \cdot \dot{\beta})^2 + Y^2\dot{\beta}^2 - 2Y(\hat{R} \cdot \dot{\beta})^2 + 2Y(\hat{R} \cdot \dot{\beta}) (\beta \cdot \dot{\beta}) \notag \\
+                                                                 &= (2Y - \frac{1}{\gamma^2})(\hat{R} \cdot \dot{\beta})^2 + Y^2\dot{\beta}^2 - 2Y(\hat{R} \cdot \dot{\beta})^2 + 2Y(\hat{R} \cdot \dot{\beta}) (\beta \cdot \dot{\beta}) \notag \\
+                                                                 &= -\frac{(\hat{R} \cdot \dot{\beta})^2}{\gamma^2} + Y^2\dot{\beta}^2 \label{eq53}
+\end{align}
+Equation (\ref{eq53}) is true for circular motion, where $\beta \perp \dot{\beta}$. 
+In spherical coordinate system, let's take $\theta$ the angle between $\hat{R}$ and $\beta$.
+Then $Y = 1 - \beta \cos{\theta}$ and $\hat{R}\cdot \dot{\beta} = \dot{\beta} \sin{\theta} \cos{\phi}$.
+So, equation (\ref{eq52}) becomes,
+\begin{align}
+    \frac{dP}{d\Omega}\biggl|_{t_{ret}} &= \frac{q^2}{16\pi^2 \epsilon_0c} \left[ \frac{\dot{\beta^2}}{(1-\beta \cos{\theta})^3} - \frac{\dot{\beta}^2\sin^2{\theta}\cos^2{\phi}}{\gamma^2(1-\beta \cos{\theta})^5} \right] \notag \\
+                                        &= \frac{q^2\dot{\beta}^2}{16\pi^2 \epsilon_0c} \left[ \frac{1}{(1-\beta x)^3} - \frac{(1-x^2)\cos^2{\phi}}{\gamma^2(1-\beta x)^5} \right] \notag
+\end{align}
+This equation is obtained by changing variable. 
+Here, $x=\cos{\theta}$ and for that the limits become $\theta = -\pi \rightarrow x = -1$ and $\theta = \pi \rightarrow x = 1$.
+And also $d\Omega = \sin{\theta}d\theta d\phi $
+Then power over the whole area becomes,
+\begin{align}                                                                                                                     
+    \int \frac{dP}{d\Omega} d\Omega &= \frac{q^2\dot{\beta^2}}{16\pi^2 \epsilon_0c}\int_{0}^{2\pi} \int_{-1}^{1} \left[ \frac{1}{(1-\beta \cos{\theta})^3} - \frac{(1-x^2)\cos^2{\phi}}{\gamma^2(1-\beta x)^5} \right] dx d\phi \label{eq54}
+\end{align}
+There are two terms in this equation. 
+I will integrate each term seperately. 
+Integrating the 1st term,
+\begin{align}
+    \int_{0}^{2\pi} \int_{-1}^{1} \frac{1}{(1-\beta x)^3} dxd\phi &= 2\pi \frac{1}{2\beta}(1-\beta x)^{-2}\biggr|^1_{-1} \notag \\
+                                                                  &= \frac{\pi}{\beta}\left( \frac{4\beta}{(1-\beta^2)^2} \right)
+\end{align}
+Now  for integration of the 2nd term, changing variable again,
+\begin{align*}
+    1 - \beta x = w &\rightarrow x = \frac{1-w}{\beta} \Rightarrow dx = \frac{1}{\beta}dw \\
+    x = -1 &\rightarrow w = 1+\beta \\
+    x = 1 &\rightarrow w= 1-\beta
+\end{align*}
+From equation (\ref{eq54}),
+\begin{align}
+    & \int_{0}^{2\pi} \cos^2{\phi}d\phi \int_{1+\beta}^{1-\beta} \frac{1}{\gamma^2 \beta} \frac{1-\frac{(1-w)^2}{\beta^2}}{w^5}dw \notag \\
+    =& (\frac{1}{2}\phi + \frac{1}{4}\sin(2\phi))\biggr|_0^{2\pi} \int_{1+\beta}^{1-\beta} \frac{1}{\gamma^2 \beta} \frac{\frac{\beta^2-1 + 2w -w^2}{\beta^2}}{w^5} dw \notag \\
+    =& \pi \int_{1+\beta}^{1-\beta} \frac{1}{\gamma^2 \beta} \frac{\frac{-\frac{1}{\gamma^2} + 2w -w^2}{\beta^2}}{w^5} dw \notag \\
+    =& \pi \int_{1+\beta}^{1-\beta} \frac{1}{\gamma^2 \beta^3} \frac{-\frac{1}{\gamma^2} + 2w -w^2}{w^5} dw \notag \\
+    =& \pi \int_{1+\beta}^{1-\beta} \frac{1}{\gamma^2 \beta^3}(-\frac{1}{\gamma^2}w^{-5} + 2w^{-4} - w^{-3}) dw \notag \\
+    =& \frac{\pi}{\gamma^2 \beta}\left[ \frac{1}{4\gamma^2} (1+\beta)^{-4} -\frac{2}{3}(1+\beta)^{-3} +\frac{1}{2}(1+\beta)^{-2} - \frac{1}{4\gamma^2} (1-\beta)^{-4} +\frac{2}{3}(1-\beta)^{-3} -\frac{1}{2}(1-\beta)^{-2} \right] \notag
+\end{align}
+Again for simplification let, $ 1+\beta = x$ and $ 1-\beta = y$ then
+\begin{align}
+    xy = (1+\beta)(1-\beta) = 1 - \beta^2 = \frac{1}{\gamma^2} 
+\end{align}
+Then,
+\begin{align}
+    & \frac{\pi}{\gamma^2 \beta}\left[ \frac{1}{4\gamma^2} (1+\beta)^{-4} -\frac{2}{3}(1+\beta)^{-3} +\frac{1}{2}(1+\beta)^{-2} - \frac{1}{4\gamma^2} (1-\beta)^{-4} +\frac{2}{3}(1-\beta)^{-3} -\frac{1}{2}(1-\beta)^{-2} \right] \notag \\
+    =& \frac{\pi}{\gamma^2 \beta}\left[ \frac{1}{4\gamma^2} (\frac{1}{x^4} - \frac{1}{y^4}) - \frac{2}{3} (\frac{1}{x^3} - \frac{1}{y^3}) + \frac{1}{2} (\frac{1}{x^2} - \frac{1}{y^2}) \right] \label{eq57}  
+\end{align}
+Let's calculate some terms of equation (\ref{eq57}) first,
+\begin{align}
+    \therefore & y^2-x^2 = (1 -2\beta +\beta^2 -1 -\beta^2 -2\beta) = -4\beta \\
+    \therefore & y^4-c^4 = (y^2 - x^2)(y^2 + x^2) = -4\beta(2+2\beta^2) = -8\beta(1 +\beta^2) \\
+    \therefore & y^3-x^3 = (y-x)(x^2 +y^2 +xy) = -2\beta (2 +2\beta^2 +1 -\beta^2) = -2\beta(3 +\beta^2)
+\end{align}
+Then equation (\ref{eq57}) becomes,
+\begin{align}
+    & \frac{\pi}{\gamma^2 \beta}\left[ \frac{1}{4}\gamma^6 (-8\beta) (1+\beta^2) - \frac{2}{3}\gamma^6 (-2\beta) (3+\beta^2) + \frac{1}{2}\gamma^4 (-4\beta) \right] \notag \\
+    =& \pi \left[ -2\gamma^4 (1+\beta^2) + \frac{4}{3}\gamma^4 (3+\beta^2) -2\gamma^2 \right] \notag \\
+    =& \pi \left[ -2\gamma^4 -2\gamma^4\beta^2 + 4\gamma^4+\frac{4}{3}\gamma^4 \beta^2 -2\gamma^2 \right] \notag
+\end{align}
+\begin{align}
+    =& \pi \left[ -2\gamma^4 -2\gamma^4\beta^2 + 4\gamma^4+\frac{4}{3}\gamma^4 \beta^2 -2\gamma^2 \right] \notag \\
+    =& \pi \left[ -2\gamma^4 -\frac{2}{3}\gamma^4\beta^2 -2\gamma^4(1-\beta^2) \right] \notag \\
+    =& 2\gamma\pi \left[ 1-\frac{1}{3}\beta^2 -(1-\beta^2) \right] \notag \\
+    =& \frac{4}{3}\pi\gamma^4
+\end{align}
+Summing everything up equation (\ref{eq54}) becomes,
+\begin{align}
+    \int \frac{dP}{d\Omega} d\Omega &= \frac{q^2\dot{\beta^2}}{16\pi^2 \epsilon_0c} (4\pi\gamma^4 - \frac{4}{3}\pi\gamma^4) \notag \\
+                                    &= \frac{q^2\dot{\beta^2}}{4\pi^2 \epsilon_0c}(\frac{2}{3}\pi \gamma^4) \notag
+\end{align}
+Then the radiation power becomes, 
+\begin{align}
+    \therefore \boxed{P = \frac{q^2\dot{\beta}^2\gamma^4}{6\pi \epsilon_0c}} \label{eq62}
+\end{align}
+This is the \textbf{synchrotron radiation power:} the rate at which a relativistic charge loses energy to radiation. 
+In this equation $\dot{\beta} = \frac{\mathbf{a}}{c}$, if the speed is not relativistic then $\gamma \rightarrow 1$ 
+and for that equation (\ref{eq62}) becomes,
+\begin{align}
+    \therefore P = \frac{q^2a^2}{6\pi \epsilon_0c^3} \label{eq63} 
+\end{align}
+Equation (\ref{eq63}) is the Larmor equation, which is what expected for nonrelativistic case.  \\ \\
+Again equation (\ref{eq62}) also depends on mass even though there is no direct mass term in it. 
+It contain $\gamma^4$ and we know that, $\gamma = \frac{E}{mc^2}$. 
+so, for fixed energy and radius, there is inversely proportional mass of the power of 4 in the power equation. 
+That is why electron will radiate way more than proton ($\approx 1836^4$ times) at same energy.
+In LEP experiment where electron-positron collision is used, the synchroton radiation is huge and it causes a lot of enery loss.
+In LHC experiment the energy loss is much lower as there proton-proton collision is used.  
+\nocite{*}
+\printbibliography
+\end{document}
+
+
+ 
